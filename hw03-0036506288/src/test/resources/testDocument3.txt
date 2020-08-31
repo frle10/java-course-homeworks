@@ -1,0 +1,11 @@
+{$ = echo ja sam najjaci$}
+
+Recenzentu, pliz daj 5 :)
+
+{$For ja nemam nikakve varijable$} oh {$=$} {$end$}
+
+baaaam
+
+
+
+

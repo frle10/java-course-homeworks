@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	<style>
+		body {background-color: #{$= "background" "7F7F7F" @tparamGet $};}
+	</style>
+	<title>Background Color Script</title>
+	</head>
+	
+	<body>
+		<h1>Background Color</h1>
+		<p>This webpage should have correct background color if everything was implemented properly.</p>
+		<p>Scripts:</p>
+		<p>
+			<a href="scripts/osnovni.smscr">osnovni.smscr</a>
+			<a href="scripts/brojPoziva.smscr">brojPoziva.smscr</a>
+			<a href="scripts/fibonaccih.smscr">fibonaccih.smscr</a>
+		</p>
+		<p>Workers</p>
+		<p>
+			<a href="ext/HelloWorker">HelloWorker</a>
+			<a href="ext/CircleWorker">CircleWorker</a>
+		</p>
+		
+		<p>
+			<form action="ext/SumWorker" method="get">
+  				Parameter a: <input type="text" name="a"><br>
+  				Parameter b: <input type="text" name="b"><br>
+  				<input type="submit" value="Submit">
+			</form>
+		</p>
+		
+		<p>
+			<form action="ext/BgColorWorker" method="get">
+  				<select name="bgcolor">
+					<option value="FF0000">Red</option>
+					<option value="00FF00">Green</option>
+					<option value="0000FF">Blue</option>
+					<option value="FFA500">Orange</option>
+					<option value="800080">Purple</option>
+				</select>
+  				<input type="submit" value="Submit">
+			</form>
+		</p>
+	</body>
+</html>

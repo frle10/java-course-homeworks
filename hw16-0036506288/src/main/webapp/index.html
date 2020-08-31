@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Photo Gallery</title>
+		
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/htmlescaping.js"></script>
+		<script type="text/javascript">
+		
+			$(document).ready(
+				function() {
+					fetchTagList();	
+				}
+			);
+			
+			function fetchTagList() {
+				$.ajax(
+					{
+						url: "rest/taglist",
+						dataType: "json",
+						success: function(data) {
+							var buttonDiv = document.getElementById("buttons");
+							for(var i = 0; i < data.tags.length; i++) {
+								var inputElement = document.createElement("button");
+								inputElement.tag = data.tags[i];
+								inputElement.addEventListener("click", function() {
+									fetchImagesForTag();
+								});
+								
+								inputElement.innerHTML = data.tags[i];
+								inputElement.className = "tagButton";
+								buttonDiv.appendChild(inputElement);
+							}
+						}
+					}
+				);
+			}
+			
+			function fetchImagesForTag() {
+				$.ajax(
+					{
+						url: "rest/imageList",
+						data: {
+							tag: event.target.tag
+						},
+						dataType: "json",
+						success: function(data) {
+							var photoDiv = document.getElementById("photo");
+							var infoDiv = document.getElementById("info");
+							if(photoDiv.firstChild) {
+								photoDiv.removeChild(photoDiv.firstChild);
+							}
+							while(infoDiv.firstChild){
+								infoDiv.removeChild(infoDiv.firstChild);
+							}
+							
+							var thumbnailDiv = document.getElementById("thumbnails");
+							while(thumbnailDiv.firstChild) {
+								thumbnailDiv.removeChild(thumbnailDiv.firstChild);
+							}
+							
+							for(var i = 0; i < data.images.length; i++) {
+								serveImage(data.images[i]);
+							}
+						}
+					}
+				);
+			}
+			
+			function serveImage(image) {
+				var thumbnailDiv = document.getElementById("thumbnails");
+				var thumbnail = document.createElement("img");
+				thumbnail.src = "servlets/fetchImage?name=" + htmlEscape(image);
+				thumbnail.className = "thumbnail";
+				thumbnail.imgName = image;
+				thumbnail.addEventListener("click", function() {
+					fetchPhotoInfo();
+				});
+				thumbnailDiv.appendChild(thumbnail);
+			}
+			
+			function fetchPhotoInfo() {
+				var name = event.target.imgName;
+				$.ajax(
+					{
+						url: "rest/photoInfo",
+						data: {
+							photoName: name
+						},
+						dataType: "json",
+						success: function(data) {
+							var photoDiv = document.getElementById("photo");
+							var infoDiv = document.getElementById("info");
+							if(photoDiv.firstChild) {
+								photoDiv.removeChild(photoDiv.firstChild);
+							}
+							while(infoDiv.firstChild){
+								infoDiv.removeChild(infoDiv.firstChild);
+							}
+							
+							var photo = document.createElement("img");
+							var description = document.createElement("p");
+							var tags = document.createElement("p");
+							
+							var descriptionText = data.desc;
+							var tagsText = data.tags;
+							
+							photo.src = "servlets/fetchPhoto?name=" + htmlEscape(name);
+							photo.className = "photo";
+							photoDiv.appendChild(photo);
+							
+							description.appendChild(document.createTextNode("Description: " + descriptionText));
+							tags.appendChild(document.createTextNode("Tags: " + tagsText));
+							
+							infoDiv.appendChild(description);
+							infoDiv.appendChild(tags);
+						}
+					}
+				);
+			}
+		
+		</script>
+	</head>
+	
+	<body>
+		<h1>Photo Gallery</h1>
+		<p>Welcome to my photo gallery. :)</p>
+		<p>Here's some tags you can click in order to get relevant photos...</p>
+		<div id="buttons"></div>
+		<div id="thumbnails"></div>
+		<div id="photo"></div>
+		<div id="info"></div>
+	</body>
+</html>

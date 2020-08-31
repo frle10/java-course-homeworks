@@ -1,0 +1,7 @@
+1	Coldplay	https://www.youtube.com/watch?v=RB-RcX5DS5A
+2	AC/DC	https://www.youtube.com/watch?v=pAgnJDJN4VA
+3	Guns N' Roses	https://www.youtube.com/watch?v=1w7OgIMMRc4
+4	Imagine Dragons	https://www.youtube.com/watch?v=7wtfhZwyrcc
+5	U2	https://www.youtube.com/watch?v=98W9QuMq-2k
+6	Arctic Monkeys	https://www.youtube.com/watch?v=bpOSxM0rNPM
+7	Red Hot Chili Peppers	https://www.youtube.com/watch?v=YlUKcNNmywk

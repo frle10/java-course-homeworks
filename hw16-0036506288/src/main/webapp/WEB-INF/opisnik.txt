@@ -1,0 +1,79 @@
+autumn-waterfall.jpg
+Vodopad u jesen s okolnom šumom
+vodopad, priroda, jesen, šuma, jezero
+
+waterfall.jpg
+Niagara vodopad
+vodopad, priroda, niagara
+
+rainbow-waterfall.jpg
+Vodopad s čovjekom i dugom
+vodopad, priroda, duga, čovjek
+
+forest-sun.jpg
+Izlazak sunca u šumi na jesen
+sunce, jutro, šuma, jesen, priroda
+
+lake-nature.jpg
+Prirodno jezero za vrijeme grmljavine
+jezero, priroda, grmljavina
+
+slon.jpg
+Slon u šumi
+slon, šuma, priroda
+
+capacitors.jpg
+Kondenzatori na matičnoj ploči
+elektronika, kondenzator, matična ploča
+
+cpu-socket.jpg
+Socket za procesor
+elektronika, matična ploča, procesor
+
+hardware-cpu-fan.jpg
+Unutrašnjost računala
+elektronika, ventilator, sklopovlje
+
+laptop.jpg
+MacBook na stolu
+elektronika, laptop
+
+motherboard.jpg
+Matična ploča pod kutem
+elektronika, matična ploča
+
+workplace.jpg
+Ugodno radno mjesto
+radno mjesto
+
+country-guitar.jpg
+Cura kako svira gitaru u prirodi
+glazba, gitara
+
+dark-dj.jpg
+DJ u mraku kako mixa
+DJ, muzika
+
+fantasy-spirit.jpg
+Sablast u magli
+fantazija, duh, magla
+
+forest-mist.jpg
+Magla u šumi
+magla, šuma, priroda
+
+forest-path.jpg
+Put u šumi
+šuma, priroda, put
+
+monkey-electric-guitar.jpg
+Majmun kako svira električnu gitaru
+glazba, gitara, majmun
+
+piano.jpg
+Klavirske tipke
+glazba, klavir
+
+singing.jpg
+Dijete kako pjeva
+glazba, pjevanje

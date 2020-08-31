@@ -1,0 +1,121 @@
+RECENZIJE:
+
+-------------------
+Lucija Valentić
+-------------------
+
+Dobio si 1 zbog zadnjeg zadatka. Tekst ti se parsira u krive nodeove. Znači vrati ti da documentNode ima 3 djece (trebao bi imati 4), prva dva djeteta od documentNode su dobra, ali već sljedeći je krivi - trebao bi biti TextNode, a ForLoopNode je. Izgleda da si negdje izgubio ovaj TextNode sa vrijednošću \r\n koji je trebao biti između dva ForLoopNodea, jer svi ostali tipovi čvorova su dobri.
+
+1.zadatak: Sve je dobro u prvom zadatku.
+
+2.zadatak: Drugi zadatak si lijepo napisao, nisi komplicirao. Ja sam tu previše komplicirala, pa sam sad lijepo vidjela kako se to moglo na ljepši način napisati. Eventualno si mogao odmah stvarati i vraćati tokene u metodi nextToken(), a ne pozivati još dodatnu metodu za to.
+
+3.zadatak: Ako neki node nikad nije dodao dijete, kolekcija koja ih čuva se nikad nije napravila, i children == null, što znači da kad pozivaš koliko djece ima taj node, izbaciti  će ti NullPointerException. Dodaj samo da vraća 0 u tom slučaju i onda će sve raditi. Ove metode koje ti stvaraju tokene u SmartScriptLexer si mogao nazvati createOpeningTag da se baš zna da stvaraju takav token, jer je ovako malo zbunjujuće kad se čita prvi put, ali to nije tako bitno. Isto tako, na tim mjestima u javadocu si mogao napisati da se i stvaraju tokeni, a ne samo da se provjeravaju jesu li neke vrste. '\n', '\t', '\r' su ti jedan znak, pa kad uspoređuješ da li je nešto jednako tome, uspoređuješ npr data[currentIndex] == '\n', a ne data[currentIndex] == 'n' (ali to si već radio u jednoj metodi, pa ne znam zašto nisi i u drugoj, metode su checkEscapeSequenceTag() i isEmptyContent()).
+
+E sad, greške koje imaš su baš male, vidi se da su previdi. Kad ćeš tako i tako već morati ispravljati zadaću, napisala sam i ove ostale male stvari koje nisu greške, ali meni zvuče/izgledaju ljepše; stvarno nebitno. Tako da bi inače dobio visoku ocjenu, ali eto
+
+-------------------
+Filip Vučić
+-------------------
+
+Rezime:
+
+     Ovoj zadaći dajem ocjenu 5 jer je jako kvalitetno riješena, kod je čitljiv i sažet, testovi precizni.
+
+Komentari specifični za zadatke:
+  
+     1. Nemam zamjerki. Sve si napravio kako je trebalo i na način na koji je trebalo. Jedino ti fali EvenIntegerTester, no sam sam ga ručno dodao i testni primjeri za minimalni uvjet se pokreću bez greške.
+
+     2. Lexer ti je stvarno odličan. Kod sažet taman kako treba i sve što je trebalo staviti u zasebne metode radi jednostavnije čitljivosti je stavljeno. Jedino za ubuduće javadocaj i enumove. Profesorovi testovi se pokreću bez errora, to je najbitnije.
+
+     3. Za unos u SmartScriptTesteru: "This is sample text.\\r\\n" +
+                "{$ FOR i 1 10 1 $}\\r\\n" +
+                "This is {$= i $}-th time this message is generated.\\r\\n" +
+                "{$END$}\\r\\n" +
+                "{$FOR i 0 10 2 $}\\r\\n" +
+                "sin({$=i$}^2) = {$= i i * @sin \\\"0.000\\\" @decfmt $}\\r\\n" +
+                "{$END$}"; ,
+        koji ima invalid escaping i to ti lexer baca, pa SmartScriptTester baca poruku "You have failed this class". Kod takvih slučajeva preporučam ti da hvataš SmartScriptLexerException u nekom dijelu koda u parseru i baciš novi SmartScriptParserException s istom porukom, no to je minimalna zamjerka.
+        Kod je i kod lexera i kod parsera vrlo čitljiv, fino si to rasporedio na puno tokena da ti u parseru bude lakše. Tu si javadocao sve kako treba, i enumove.
+
+Zaključak:
+
+     Ovo je definitivno zadaća za 5. Najviše zbog testova kojima si pokrio stvarno sve moguće slučajeve i koliko vidim, ništa ti nije promaklo. Javadoc je kvalitetan na mjestima gdje treba biti, a kod lijepo raspodijeljen u funkcije što olakšava čitljivost.
+
+-------------------
+Zvonimir Vujnović
+-------------------
+
+Prvi i drugi zadatak nemam zamjerke, sve je lijepo uređeno, pregledno i čitljivo. Podijeljeno je u više metoda i to samo dodaje na činjenicu da je lijepo oblikovano. Ispisi su ti dobri i imaš sve što je trebalo imaplementirati.
+
+U 2. zadatku si mogao komentirat token tipove i lexer stanja kao što si i u 3.
+
+Što se trećeg zadatka tiče, ispis ti nije dobar, ali samo mali detaljčić. 
+
+This is sample text.
+{$FOR i 1 10 1 $}
+ This is {$= i $}-th time this message is generated.
+{$END$}{$FOR i 0 10 2 $}
+ sin({$= i $}^2) = {$= i i * @sin "0.000" @decfmt $}
+{$END$}
+
+--> ovo je tvoj ispis, jedina zamjerka je to što u 4. retku ti ne odvoji END od FOR loopa, pretpostavljam da se to dogodilo jer si samo preskočio \r\n nakon enda. Bez obzira na to rezultat ti prolazi minimalne uvjete jer se može ponovo parsirati u isti tekst i dobiva se isto stablo nodova i elemenata.
+
+
+Lexer ti dobro radi, barem kako si zamislio s podjelom da token type-ove pa ga sređuješ u parseru.
+
+Također, i 3. zadatak je lijepo napisan, kod je čitljiv.
+
+----------------------------------------------------------------------------------------------------------------
+
+-------------------
+PROMJENE
+-------------------
+
+Općenito sam promijenio više stvari nego je bilo potrebno za postizanje minimalnog uvjeta, uključujući ostale greškice navedene od strane recenzenata, kao i neke stvari koje sam sam uočio, a recenzenti nisu naveli. Više detalja u nastavku.
+
+Struktura direktorija
+----------------------
+
+Pored src i pom.xml stvoren examples direktorij koji je bio tražen u uputi i u njega je premješten doc1.txt koji je dosad bio u mapi test\resources.
+
+
+1. zadatak
+-------------
+
+U ovom zadatku nema promjena s obzirom na to da je sve bilo u redu.
+
+
+2. zadatak
+-------------
+
+1. U klasi Lexer u konstruktoru i metodi setState() dodana anotacija @throws NullPointerException u javadoc.
+
+2. U enumeracijama LexerState i TokenType dodan javadoc za sve članove.
+
+
+3. zadatak
+-------------
+
+1. U klasi SmartScriptParser u metodi parseEndTag() u liniji 193 dodana je naredba "lexer.setState(SmartScriptLexerState.BODY);". Ova promjena je jedina potrebna kako bi se zadovoljili minimalni uvjeti, bez ove linije lexer bi ostao u TAG modu iako bi izišao iz END taga što je uzrokovalo probleme.
+
+2. U klasi Node u metodi size() u liniji 42 promijenjena je naredba iz "return children.size();" u "return (children == null) ? 0 : children.size();". Ovom promjenom sprječava se bacanje NullPointerException-a kada pitamo koliko neki Node ima djece, a članska varijabla children nije nikad bila inicijalizirana (children == null).
+
+3. U klasi SmartScriptLexer nadograđen je javadoc metoda koje generiraju tokene tako da piše da stvarno i generiraju te tokene, a ne da ih samo provjeravaju.
+
+4. U klasi SmartScriptLexer u metodi setState() u javadoc dodana anotacija @throws NullPointerException.
+
+5. U klasi SmartScriptLexer promijenjeno ime svih metoda koje generiraju neki tip tokena iz "isSomeTypeOfToken()" u "generateSomeTypeOfToken()".
+
+Promjenama 3., 4. i 5. u ovom zadatku, kod bi trebao biti više samodokumentirajući i sada je jasnije što se točno događa pozivom tih metoda
+čak i bez čitanja javadoca, a i u dokumentaciji je sada sve opisano na bolji način.
+
+6. U klasi SmartScriptParser dodana nova privatna metoda askForNextToken() koja poziva metodu nextToken() lexera, ali istovremeno obrađuje bilo kakvu iznimku bačenu od strane lexera kako bi se spriječilo curenje iznimke SmartScriptLexerException iz parsera. Spomenuta nova metoda je također dokumentirana javadocom. Svaka linija koja je sadržavala naredbu "lexer.nextToken();" zamijenjena je linijom "askForNextToken();".
+
+7. U klasi SmartScriptParser u konstruktoru dodana anotacija @throws SmartScriptParserException u javadoc
+
+8. Promijenjeni, obrisani ili dodani neki novi testovi za SmartScriptParser kako bi se bolje pokrila sigurnost rada parsera.
+
+
+NAPOMENA: U klasi SmartScriptLexer u metodi checkEscapeSequenceTag() postoji jako dobar razlog zašto u if-u imam uspoređivanje s npr. "n", a ne '\n'. Razlog dolazi iz prirode zadatka, zato što se mora omogućiti da korisnik u stringu unutar tag-a smije ručno upisati "\n" i to
+će onda biti dva znaka "\" i "n", a ne jedan znak '\n'. Kada se tako nešto detektira, onda to pretvaramo u jedan znak '\n' što se vidi u kodu te metode kod mene. U suprotnom lexer i parser ne bi radili u skladu s uputom.

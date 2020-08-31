@@ -1,0 +1,5 @@
+{$FOR i "854"5.466 -1$}
+Body text malo...\{$ovo nije tag
+
+{$   = a - 5.44 @funkcija i$}
+{$END$}
